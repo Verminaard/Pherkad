@@ -1,3 +1,9 @@
+CREATE TABLE Class (
+id_class INT UNSIGNED AUTO_INCREMENT,
+number VARCHAR(5),
+PRIMARY KEY (id_class)
+);
+
 Create table User (
 id_user INT UNSIGNED AUTO_INCREMENT,
 id_class INT UNSIGNED NULL,
@@ -5,13 +11,7 @@ role VARCHAR(50),
 password CHAR(32),
 PRIMARY KEY (id_user),
 FOREIGN KEY (id_class) REFERENCES Class(id_class)
-)
-
-CREATE TABLE Class (
-id_class INT UNSIGNED AUTO_INCREMENT,
-number VARCHAR(5),
-PRIMARY KEY (id_class)
-)
+);
 
 CREATE TABLE Mark (
 id_mark BIGINT UNSIGNED AUTO_INCREMENT,
@@ -19,7 +19,7 @@ id_user INT UNSIGNED,
 date DATE,
 PRIMARY KEY (id_mark),
 FOREIGN KEY (id_user) REFERENCES User(id_user)
-)
+);
 
 CREATE TABLE Homework (
 id_homework BIGINT UNSIGNED AUTO_INCREMENT,
@@ -27,49 +27,15 @@ id_user INT UNSIGNED,
 date DATE,
 PRIMARY KEY (id_homework),
 FOREIGN KEY (id_user) REFERENCES User(id_user)
-)
+);
 
 CREATE TABLE  Schedule (
 id_schedule INT UNSIGNED AUTO_INCREMENT,
 id_class INT UNSIGNED,
-day1 INT UNSIGNED NULL,
-day2 INT UNSIGNED NULL,
-day3 INT UNSIGNED NULL,
-day4 INT UNSIGNED NULL,
-day5 INT UNSIGNED NULL,
-day6 INT UNSIGNED NULL,
+day INT UNSIGNED NULL,
+subject INT UNSIGNED NULL,
 status VARCHAR(2),
 PRIMARY KEY (id_schedule),
 FOREIGN KEY (id_class) REFERENCES Class(id_class),
-FOREIGN KEY (day1) REFERENCES Day(id_day),
-FOREIGN KEY (day2) REFERENCES Day(id_day),
-FOREIGN KEY (day3) REFERENCES Day(id_day),
-FOREIGN KEY (day4) REFERENCES Day(id_day),
-FOREIGN KEY (day5) REFERENCES Day(id_day),
-FOREIGN KEY (day6) REFERENCES Day(id_day)
-)
-
-CREATE TABLE Day (
-id_day INT UNSIGNED AUTO_INCREMENT,
-subject1 INT UNSIGNED NULL,
-subject2 INT UNSIGNED NULL,
-subject3 INT UNSIGNED NULL,
-subject4 INT UNSIGNED NULL,
-subject5 INT UNSIGNED NULL,
-subject6 INT UNSIGNED NULL,
-subject7 INT UNSIGNED NULL,
-PRIMARY KEY (id_day),
-FOREIGN KEY (subject1) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject2) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject3) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject4) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject5) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject6) REFERENCES Subject(id_subj),
-FOREIGN KEY (subject7) REFERENCES Subject(id_subj)
-)
-
-CREATE TABLE Subject (
-id_subj INT UNSIGNED AUTO_INCREMENT,
-subjname VARCHAR(32),
-PRIMARY KEY (id_subj)
-)
+FOREIGN KEY (subject1) REFERENCES Subject(id_subj)
+);
